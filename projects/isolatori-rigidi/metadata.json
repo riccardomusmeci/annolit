@@ -1,0 +1,13 @@
+{
+    "dataset": "isolatori-rigidi",
+    "categories": [
+        {
+            "category_name": "broken",
+            "category_id": 0
+        },
+        {
+            "category_name": "ok",
+            "category_id": 1
+        }
+    ]
+}
