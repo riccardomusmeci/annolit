@@ -1,0 +1,13 @@
+{
+    "dataset": "animals",
+    "categories": [
+        {
+            "category_name": "dog",
+            "category_id": 0
+        },
+        {
+            "category_name": "cat",
+            "category_id": 1
+        }
+    ]
+}
