@@ -6,7 +6,7 @@ from src.pages import description, setup_project, annotate
 
     
 st.set_page_config(layout="wide")
-st.title("Annlit: annotation tool for CV")
+st.title("Annolit")
 
 app = MultiPage()
 app.add_page(

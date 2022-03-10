@@ -1,12 +1,12 @@
 {
-    "dataset": "isolatori-rigidi",
+    "dataset": "animals",
     "categories": [
         {
-            "category_name": "broken",
+            "category_name": "dog",
             "category_id": 0
         },
         {
-            "category_name": "ok",
+            "category_name": "cat",
             "category_id": 1
         }
     ]

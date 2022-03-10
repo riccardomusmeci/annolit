@@ -52,8 +52,6 @@ def load_annotation_df(dataset_path: str, df_path: str) -> pd.DataFrame:
 
     images = [os.path.join(dataset_path, f) for f in os.listdir(dataset_path) if f.endswith(".jpg")]
     if os.path.isfile(df_path) is False:
-        warning_container = st.container()
-        warning_container.warning(f"Creating annotation csv from scratch")
         # Creating annotation_df
         _ann_data = {
             "image_path": images, 
@@ -62,7 +60,6 @@ def load_annotation_df(dataset_path: str, df_path: str) -> pd.DataFrame:
         }
         annotation_df = pd.DataFrame(data=_ann_data)
         annotation_df.to_csv(df_path, index=False)
-        warning_container.empty
     else:
         annotation_df = pd.read_csv(df_path)
     return annotation_df 

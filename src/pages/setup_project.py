@@ -1,23 +1,18 @@
 import os
-import json
 import streamlit as st
 from src.pages.utils import load_metadata, save_metadata
 
 def reset_project():
     st.session_state.project = None
 
-def set_new_project():
-    st.session_state.new_project = True
-    
-def set_old_project():
-    st.session_state.new_project = False
-    
 def open_project(render_container):
     reset_project()
     render_container.empty()
     render_container = st.container()
     with render_container:
-        projects =  ["none"] + [p for p in os.listdir(st.session_state.projects_dir)]
+        projects = ["none"]
+        if os.path.isdir(st.session_state.projects_dir):
+            projects += [p for p in os.listdir(st.session_state.projects_dir)]
         project = st.selectbox(
             'Which project would you like to open?',
             projects
@@ -84,28 +79,19 @@ def add_dataset_and_categories():
             
 def fn():
     """calls the setup project page function
-
-    Args:
-        project_dir (str): old project dirs
-
-    Returns:
-        str: selected (either new or old) project name
     """
     st.markdown("## **Setup Project**")
-    st.write("Choose between an old annotation project or creating a new one")
        
-    old_project_button, new_project_button, _ = st.columns([2, 2, 10])
-    new_project_button.button(label="New Project", on_click=set_new_project)
-    old_project_button.button(label="Open Project", on_click=set_old_project)
-    
     render_container = st.empty()
-
-    if 'new_project' in st.session_state:
-        if st.session_state.new_project:
-            new_project(render_container)
-            add_dataset_and_categories()
-        else:
-            open_project(render_container)
+    project_option = st.selectbox(
+        label="Choose between an old annotation project or creating a new one",
+        options=["none", "Open Project", "Create Project"]
+    )
+    if project_option == "Create Project":
+        new_project(render_container)
+        add_dataset_and_categories()
+    if project_option == "Open Project":
+        open_project(render_container)
     
     
     
