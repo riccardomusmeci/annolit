@@ -16,7 +16,7 @@ def fn():
     st.markdown(
         f" \
             <font size='6'> \
-                Annolit is an annotation tool for classification tasks in Streamlit. \
+                Annolit is an annotation tool for CV tasks in Streamlit. \
             </font>. \
         ", unsafe_allow_html=True
     )
