@@ -17,10 +17,12 @@ app.add_page(
     title="Setup Project",
     fn=setup_project.fn
 )
+
 app.add_page(
     title="Annotate",
     fn=annotate.fn
 )
+
 app.run()
 
 

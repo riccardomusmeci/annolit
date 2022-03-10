@@ -2,7 +2,6 @@ import streamlit as st
 
 
 def setup_session():
-    print("Setup session")
     st.session_state.projects_dir = "projects"
     st.session_state.project_dir = None
     st.session_state.project = None
