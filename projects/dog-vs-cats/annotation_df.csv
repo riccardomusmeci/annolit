@@ -1,5 +1,5 @@
 image_path,isAnnotated,label
-images\animals\1.jpg,True,dog
+images\animals\1.jpg,True,cat
 images\animals\2.jpg,True,cat
 images\animals\3.jpg,True,cat
-images\animals\4.jpg,False,-1
+images\animals\4.jpg,False,none

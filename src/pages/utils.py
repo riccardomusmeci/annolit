@@ -56,7 +56,7 @@ def load_annotation_df(dataset_path: str, df_path: str) -> pd.DataFrame:
         _ann_data = {
             "image_path": images, 
             "isAnnotated": [False] * len(images),
-            "label": [-1] * len(images)
+            "label": ["none"] * len(images)
         }
         annotation_df = pd.DataFrame(data=_ann_data)
         annotation_df.to_csv(df_path, index=False)
