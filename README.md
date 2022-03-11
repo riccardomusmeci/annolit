@@ -1,10 +1,10 @@
 # **Annolit**
 
-## *Annolit* is an annotation tool for CV tasks in Streamlit.
+## *Annolit* is an annotation tool for small CV classification tasks in Streamlit.
 
 ### **Usage** 
 
-To use Annolit, first install the required packages from *requirements.txt*.
+To use *Annolit*, first install the required packages from *requirements.txt*.
 
 Then execute the following command:
 
