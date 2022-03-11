@@ -4,6 +4,16 @@
 
 ### **Usage** 
 
+To use Annolit, first install the required packages from *requirements.txt*.
+
+Then execute the following command:
+
+```
+streamlit run app.py
+```
+
+### **Annolit Workflow**
+
 #### **1. Setup Project**
 From the sidebar, go to the *Setup Project* page. Here you can:
 * Open a project: from a list of old annotations projects you can select one.
