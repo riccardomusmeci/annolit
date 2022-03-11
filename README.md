@@ -46,7 +46,5 @@ The annotations csv file will look like the following one:
 Be sure to have the images within the path *images/dataset_name/*.jpg*
 
 ### **To-Do**
-[ ] Fix UI/UX transition from setup and annotation
-
 [ ] Add support to Object Detection
     

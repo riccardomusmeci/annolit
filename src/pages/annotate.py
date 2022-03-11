@@ -52,6 +52,8 @@ def fn():
             st.markdown("### **Slower indexing**")
             prev_col, next_col, _ = st.columns([3, 3, 10])
             
+            st.write("-----")
+            
             prev_col.button("Previous Image", on_click=previous_image)
             next_col.button("Next Image", on_click=next_image)
 
