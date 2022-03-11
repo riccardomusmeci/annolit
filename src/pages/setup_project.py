@@ -4,6 +4,9 @@ from src.pages.utils import load_metadata, save_metadata
 
 def reset_project():
     st.session_state.project = None
+    
+def reset_annotation():
+    st.session_state.annotation_idx = 0
 
 def open_project(render_container):
     reset_project()
@@ -21,6 +24,7 @@ def open_project(render_container):
             # Setting session vars
             st.session_state.project = project
             st.session_state.project_dir = os.path.join(st.session_state.projects_dir, project)
+            st.session_state.can_annotate = True
             st.markdown(f"* Project name: **{project}**")
             dataset, categories = load_metadata()
             st.session_state.categories = categories
@@ -35,7 +39,7 @@ def new_project(render_container):
         render_container (st.emtpy()): streamlit empty container
     """
     # reset graphics
-    # reset_project()
+    reset_annotation()
     render_container.empty()
     render_container = st.container()
     
@@ -73,9 +77,10 @@ def add_dataset_and_categories():
                 st.session_state.categories.append(category)
             if save_bttn.button("Save Project Metadata"):
                 save_metadata()
+                st.session_state.can_annotate = True
             st.markdown("**Categories**")
             for c in st.session_state.categories:
-                st.markdown(f"* **{c}**")          
+                st.markdown(f"* **{c}**")      
             
 def fn():
     """calls the setup project page function
@@ -87,11 +92,20 @@ def fn():
         label="Choose between an old annotation project or creating a new one",
         options=["none", "Open Project", "Create Project"]
     )
+    
     if project_option == "Create Project":
         new_project(render_container)
         add_dataset_and_categories()
     if project_option == "Open Project":
         open_project(render_container)
+    
+    st.write("----")
+    st.warning("Once you are done in setting up the annotation project, go to Annotate page from the sidebar")    
+        
+    
+
+    
+        
     
     
     

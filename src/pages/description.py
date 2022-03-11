@@ -9,7 +9,8 @@ def setup_session():
     st.session_state.images_dir = "images"
     st.session_state.dataset = None
     st.session_state.annotation_idx = 0
-
+    st.session_state.can_annotate = False
+    
 def fn():
     setup_session()
     st.markdown("----")
