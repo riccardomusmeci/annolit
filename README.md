@@ -4,7 +4,7 @@
 
 ### **Usage** 
 
-To use *Annolit*, first install the required packages from *requirements.txt*.
+First install the required packages from *requirements.txt*.
 
 Then execute the following command:
 
@@ -33,7 +33,7 @@ From the sidebar, go to the *Annotate* page. Here you can start annotating each 
     <img src="static/annotate.jpg" width="400px"></img>
 </p>
     
-Every time you assing a label, an annotation.csv file is uploaded in the *projects/project_name* folder. Once you are done, this file represents the annotation file.
+Every time you assing a label, an annotation.csv file is uploaded in the *projects/project_name* folder, which is the final annotation file.
 
 The annotations csv file will look like the following one:
 <p align="center">
