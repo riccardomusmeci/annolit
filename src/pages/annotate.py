@@ -1,7 +1,7 @@
 import os
-from pandas import options
-import streamlit as st
+import cv2
 from PIL import Image
+import streamlit as st
 from src.pages.utils import load_annotation_df
 
 def set_index(idx):
@@ -49,7 +49,7 @@ def fn():
             
             st.write("------")
             
-            st.markdown("### **Slower indexing**")
+            st.markdown(f"### **Slower indexing** ({st.session_state.annotation_idx}/{st.session_state.max_index-1})")
             prev_col, next_col, _ = st.columns([3, 3, 10])
             
             st.write("-----")
@@ -58,19 +58,25 @@ def fn():
             next_col.button("Next Image", on_click=next_image)
 
             annotation_row = annotations_df.iloc[st.session_state.annotation_idx, :]
-            image_col, info_col, categories_col = st.columns([4, 4, 2])
+            image_col, _, info_col = st.columns([8, 1, 4])
             
             # plotting image
-            img = Image.open(annotation_row["image_path"])
-            image_col.image(img, width=384)
+            img = cv2.imread(annotation_row["image_path"])
+            if img.shape[0] > 768:
+                width = 768
+            else:
+                width = 384    
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            # img = Image.open(annotation_row["image_path"])
+            image_col.image(img, width=width)
             
             # showing image info
             img_name = annotation_row['image_path'].split(os.sep)[-1]
             label = annotation_row['label']
             info_col.markdown("<br><br>", unsafe_allow_html=True)
             info_col.markdown("### **Image Information**")
-            info_col.markdown(f"* image: *{img_name}*")
-            info_col.markdown(f"* label: *{label}*")
+            info_col.text(f"Image Filename: {img_name}")
+            info_col.text(f"Label: {label}")
             
             # showing categories to select one from and saving new annotation
             info_col.markdown("<br>", unsafe_allow_html=True)
