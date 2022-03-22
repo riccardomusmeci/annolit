@@ -1,7 +1,8 @@
 import os
 import cv2
-from PIL import Image
+import random
 import streamlit as st
+import matplotlib.pyplot as plt
 from src.pages.utils import load_annotation_df
 
 def set_index(idx):
@@ -24,7 +25,7 @@ def previous_image():
         st.session_state.annotation_idx -= 1
     else:
         st.session_state.annotation_idx = st.session_state.max_index-1
-
+        
 def fn():
     
     if not st.session_state.can_annotate:
@@ -41,7 +42,7 @@ def fn():
         annotation_container = st.container()
         
         with annotation_container:
-            st.markdown("### **Faster indexing**")
+            st.markdown("### **Go to image**")
             input_col, _ = st.columns([5, 8])
             goto_idx = input_col.text_input(f'Go to image (max {st.session_state.max_index-1})', '0')
             if input_col.button("Go"):
@@ -49,7 +50,7 @@ def fn():
             
             st.write("------")
             
-            st.markdown(f"### **Slower indexing** ({st.session_state.annotation_idx}/{st.session_state.max_index-1})")
+            st.markdown(f"### **Image ({st.session_state.annotation_idx}/{st.session_state.max_index-1})**")
             prev_col, next_col, _ = st.columns([3, 3, 10])
             
             st.write("-----")
@@ -63,7 +64,7 @@ def fn():
             # plotting image
             img = cv2.imread(annotation_row["image_path"])
             if img.shape[0] > 768:
-                width = 768
+                width = 1024
             else:
                 width = 384    
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -91,6 +92,24 @@ def fn():
                 annotation_row["isAnnotated"] = True
                 annotations_df.iloc[st.session_state.annotation_idx, :] = annotation_row
                 annotations_df.to_csv(df_path, index=False)
+
+            info_col.markdown("### **Annotations Distribution**")
+            _valid_label_df = annotations_df[annotations_df["label"] != "none"]
+            tot_annotations = _valid_label_df["label"].shape[0]
+            plot_data = {}            
+            for c in st.session_state.categories:
+                plot_data[c] = 100.*_valid_label_df["label"].value_counts()[c] / tot_annotations
+                
+            fig, ax = plt.subplots()
+            names = list(plot_data.keys())
+            values = list(plot_data.values())
+            ax.bar(range(len(plot_data)), values, tick_label=names)
+            ax.set_ylim(bottom=0, top=100)
+            ax.set_ylabel("% Annotations")
+            ax.set_xlabel("Label")
+            info_col.pyplot(fig)
+            
+            
             
 
             
