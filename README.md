@@ -28,7 +28,7 @@ From the sidebar, go to the *Setup Project* page. Here you can:
 
         
 #### **2. Annotate**
-From the sidebar, go to the *Annotate* page. Here you can start annotating each image in the dataset.
+From the sidebar, go to the *Annotate* page and start annotating!
 <p align="center">
     <img src="static/annotate.jpg" width="400px"></img>
 </p>
