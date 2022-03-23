@@ -4,9 +4,9 @@
 
 ### **Usage** 
 
-First install the required packages from *requirements.txt*.
+Install the required packages from *requirements.txt*.
 
-Then execute the following command:
+Execute the following command:
 
 ```
 streamlit run app.py
